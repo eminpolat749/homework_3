@@ -1,0 +1,55 @@
+package csd;
+
+class App {
+	public static void main(String [] args)
+	{
+		CalculateDigitalRootTest.run();		
+	}	
+}
+
+class CalculateDigitalRootTest {
+	public static void run()
+	{
+		java.util.Scanner kb = new java.util.Scanner(System.in);
+		
+		for (;;) {
+			System.out.print("Bir sayı giriniz:");
+			int val = kb.nextInt();
+			
+			if (val == 0)
+				break;			
+			
+			System.out.printf("%d sayısının basamaksal kökü: %d%n", val, NumberUtil.calculateDigitalRoot(val));			
+			
+		}
+		
+		System.out.println("Döngü sonu");
+	}
+}
+
+class NumberUtil {
+	public static int calculateDigitalRoot(int val)
+	{		
+		while ((val = sumDigits(val)) >= 10)
+			;			
+		
+		return val;
+	}
+	public static int sumDigits(int val)
+	{
+		int result = 0;
+		
+		while (val > 0) {
+			result += val % 10;
+			val /= 10;			
+		}
+		
+		return result;
+	}	
+}
+
+
+
+
+
+
