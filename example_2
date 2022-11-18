@@ -1,0 +1,79 @@
+package csd;
+
+class App {
+	public static void main(String [] args)
+	{
+		IsPrimeXTest.run();		
+	}	
+}
+
+class IsPrimeXTest {
+	public static void run()
+	{
+		java.util.Scanner kb = new java.util.Scanner(System.in);
+		
+		for (;;) {
+			System.out.print("Bir sayı giriniz:");
+			int val = kb.nextInt();
+			
+			if (val == 0)
+				break;
+			
+			if (NumberUtil.isPrimeX(val))
+				System.out.println(val);
+			
+		}
+		
+		System.out.println("Döngü sonu");
+	}
+}
+
+class NumberUtil {
+	public static boolean isPrimeX(int val)
+	{
+		if (!isPrime(val))
+			return false;
+		
+		while (val > 10) {
+			val = sumDigits(val);
+			if (!isPrime(val))
+				return false;			
+		}
+		
+		if (!isPrime(val))
+			return false;
+		
+		return true;
+	}
+	public static int sumDigits(int val)
+	{		
+		int result = 0;
+		
+		while (val > 0) {
+			result += val % 10;
+			val /= 10;			
+		}		
+		
+		return result;
+	}
+	public static boolean isPrime(long val)
+	{
+		if (val <= 1)
+			return false;
+		
+		if (val % 2 == 0)
+			return val == 2;
+		
+		if (val % 3 == 0)
+			return val == 3;
+		
+		if (val % 5 == 0)
+			return val == 5;
+		
+		for (long i = 7; i * i <= val; i += 2)
+			if (val % i == 0)
+				return false;
+		
+		return true;			
+	}
+}
