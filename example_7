@@ -1,0 +1,54 @@
+package csd;
+
+class App {
+	public static void main(String [] args)
+	{
+		IsDecimalHarshadTest.run();		
+	}	
+}
+
+class IsDecimalHarshadTest {
+	public static void run()
+	{
+		java.util.Scanner kb = new java.util.Scanner(System.in);
+		
+		for (int i = 0; i < 100; ++i) 
+			if (NumberUtil.isDecimalHarshad(i))
+				System.out.println(i);			
+		
+		
+		System.out.println("Döngü sonu");
+	}
+}
+
+class NumberUtil {
+	public static boolean isDecimalHarshad(int val)
+	{
+		if (val <= 0)
+			return false;
+		
+		int total = sumDigits(val);
+		
+		if (val % total == 0)
+			return true;
+		
+		return false;
+	}
+	public static int sumDigits(int val)
+	{
+		int result = 0;
+		
+		while (val > 0) {
+			result += val % 10;
+			val /= 10;			
+		}
+		
+		return result;
+	}	
+}
+
+
+
+
+
+
