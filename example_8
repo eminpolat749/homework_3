@@ -1,0 +1,46 @@
+package csd;
+
+class App {
+	public static void main(String [] args)
+	{
+		PrintCollatzTest.run();		
+	}	
+}
+
+class PrintCollatzTest {
+	public static void run()
+	{
+		java.util.Scanner kb = new java.util.Scanner(System.in);
+		
+		System.out.print("Bir sayı giriniz:");
+		int val = kb.nextInt();
+		
+		NumberUtil.printCollatz(val);		
+	}
+}
+
+class NumberUtil {
+	public static void printCollatz(int val)
+	{
+		int cnt = 0;
+		while (val != 1) {
+			++cnt;
+			System.out.printf("%d ", val);
+			if (cnt % 20 == 0)
+				System.out.println();
+			
+			if (val % 2 == 0)
+				val /= 2;
+			else
+				val = 3 * val + 1;			
+		}		
+		System.out.print(val);
+		
+	}
+}
+
+
+
+
+
+
