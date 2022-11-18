@@ -61,24 +61,7 @@ class NumberUtil {
 		
 		return true;
 	}	
-	public static int calculateDigitalRoot(int val)
-	{		
-		while ((val = sumDigits(val)) >= 10)
-			;			
-		
-		return val;
-	}
-	public static int sumDigits(int val)
-	{
-		int result = 0;
-		
-		while (val > 0) {
-			result += val % 10;
-			val /= 10;			
-		}
-		
-		return result;
-	}	
+	
 }
 
 
