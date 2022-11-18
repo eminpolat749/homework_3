@@ -1,0 +1,68 @@
+package csd;
+
+class App {
+	public static void main(String [] args)
+	{
+		FooTest.run();		
+	}	
+}
+
+class FooTest {
+	public static void run()
+	{
+		java.util.Scanner kb = new java.util.Scanner(System.in);
+		
+		for (int i = 100; i <= 999; ++i)
+			if (NumberUtil.foo(i))
+				System.out.println(i);		
+		
+		
+	}
+}
+
+class NumberUtil {
+	public static boolean foo(int val)
+	{
+		int a = val / 100;
+		int c = val % 10;
+		int b = val % 100 / 10;
+		
+		
+		
+		if (isPrime(val) && isPrime(c * 100 + b * 10 + a) && isPrime(10 * a + b) && isPrime(b * 10 + c)
+				&& isPrime(c * 10 + b) && isPrime(b * 10 + a) && (c * 100 + b * 10 + a > a * 100 + b * 10 + c))
+			return true;
+		
+				
+		
+		return false;
+	}	
+	
+	public static boolean isPrime(long val)
+	{
+		if (val <= 1)
+			return false;
+		
+		if (val % 2 == 0)
+			return val == 2;
+		
+		if (val % 3 == 0)
+			return val == 3;
+		
+		if (val % 5 == 0)
+			return val == 5;
+		
+		for (long i = 7; i * i <= val; i += 2)
+			if (val % i == 0)
+				return false;
+		
+		return true;			
+	}
+	
+}
+
+
+
+
+
+
