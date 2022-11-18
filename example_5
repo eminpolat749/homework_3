@@ -13,9 +13,8 @@ class IsSuperPrimeTest {
 		java.util.Scanner kb = new java.util.Scanner(System.in);
 		
 		for (int i = 0; i < 100; ++i) 
-			if (NumberUtil.isPrime(i) && NumberUtil.isPrime(NumberUtil.getPrime(i)))
-				System.out.printf("%d -- > %d%n", i, NumberUtil.getPrime(i));		
-			
+			if (NumberUtil.isSuperPrime(i))
+				System.out.printf("%d -- > %d%n", i, NumberUtil.getPrime(i));				
 		
 		
 		System.out.println("Döngü sonu");
@@ -23,6 +22,11 @@ class IsSuperPrimeTest {
 }
 
 class NumberUtil {
+	public static boolean isSuperPrime(int count)
+	{
+		return isPrime(count) && isPrime(getPrime(count));		
+		
+	}
 	public static int getPrime(int val)
 	{
 		int cnt = 0;
@@ -63,9 +67,6 @@ class NumberUtil {
 	}	
 	
 }
-
-
-
 
 
 
