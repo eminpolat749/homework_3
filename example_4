@@ -3,37 +3,35 @@ package csd;
 class App {
 	public static void main(String [] args)
 	{
-		IsFactorianTest.run();		
+		IsFactorianTest.run();	
 	}
 }
 
 class IsFactorianTest {
 	public static void run()
 	{
-		java.util.Scanner kb = new java.util.Scanner(System.in);
-		
-		for (int i = 1; i < 100000; ++i) 
+		for (int i = 0; i < 100_000; ++i)
 			if (NumberUtil.isFactorian(i))
-				System.out.println(i);		
-		
-		System.out.println("Döngü sonu");
+				System.out.println(i);			
 	}
 }
 
 class NumberUtil {
 	public static boolean isFactorian(int val)
 	{
-		int digit = countDigits(val);
-		int total = 0, temp = val;
-		
-		for (int i = 0; i < digit; ++i) {
-			total += factorial(val % 10);
-			val /= 10;
-		}
-		
-		return total == temp; 
+		return val > 0 && digitsFactorialSum(val) == val;		
 	}
 	
+	public static int digitsFactorialSum(int val)
+	{
+		int sum = 0;
+		
+		while (val != 0) {
+			sum += factorial(val % 10);
+			val /= 10;
+		}
+		return sum;
+	}
 	public static long factorial(int val)
 	{
 		long result = 1;
@@ -42,16 +40,7 @@ class NumberUtil {
 			result *= i;
 		
 		return result;
-	}	
-	public static int countDigits(int val)
-	{		
-		int cnt = 0;
-		
-		do {
-			++cnt;
-			val /= 10;
-		} while (val != 0);
-		
-		return cnt;
 	}
 }
+
+
