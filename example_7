@@ -3,8 +3,8 @@ package csd;
 class App {
 	public static void main(String [] args)
 	{
-		IsDecimalHarshadTest.run();		
-	}	
+		IsDecimalHarshadTest.run();
+	}
 }
 
 class IsDecimalHarshadTest {
@@ -12,38 +12,40 @@ class IsDecimalHarshadTest {
 	{
 		java.util.Scanner kb = new java.util.Scanner(System.in);
 		
-		for (int i = 0; i < 100; ++i) 
-			if (NumberUtil.isDecimalHarshad(i))
-				System.out.println(i);			
+		for (;;) {
+			System.out.print("Bir sayı giriniz:");
+			int val = kb.nextInt();
+			
+			if (val == 0)
+				break;
+			
+			if (NumberUtil.isDecimalHarshad(val))
+				System.out.printf("%d, %d sayısına bölünebilir%n", val, NumberUtil.sumDigits(val));
+			else
+				System.out.printf("%d, %d sayısına bölünemez%n", val, NumberUtil.sumDigits(val));
+		}		
+		System.out.println("Program sonu...");
 		
-		
-		System.out.println("Döngü sonu");
+		kb.close();
 	}
 }
 
 class NumberUtil {
 	public static boolean isDecimalHarshad(int val)
 	{
-		if (val <= 0)
-			return false;
+		return val > 0 && val % sumDigits(val) == 0;		
 		
-		int total = sumDigits(val);
-		
-		if (val % total == 0)
-			return true;
-		
-		return false;
 	}
-	public static int sumDigits(int val)
+	public static int sumDigits(long val)
 	{
-		int result = 0;
+		int sum = 0;
 		
-		while (val > 0) {
-			result += val % 10;
-			val /= 10;			
+		while (val != 0) {
+			sum += val % 10;
+			val /= 10;
 		}
 		
-		return result;
+		return Math.abs(sum);
 	}	
 }
 
