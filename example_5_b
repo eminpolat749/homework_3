@@ -1,0 +1,78 @@
+package csd;
+
+class App {
+	public static void main(String [] args)
+	{
+		IsSuperPrimeTest.run();	
+	}
+}
+
+class IsSuperPrimeTest {
+	public static void run()
+	{
+		java.util.Scanner kb = new java.util.Scanner(System.in);
+		
+		for (;;) {
+			System.out.print("Bir sayı giriniz:");
+			long val = kb.nextLong();
+			
+			if (val == 0)
+				break;
+			
+			if (!NumberUtil.isPrime(val))
+				continue;
+			
+			if (NumberUtil.isSuperPrime(val))
+				System.out.printf("%d sayısı süper asaldır%n", val);
+			else
+				System.out.printf("%d sayısı süper asal değildir%n", val);
+		}
+		
+		System.out.println("Program sonu");
+	}
+}
+
+class NumberUtil {
+	public static boolean isSuperPrime(long val)
+	{
+		return isPrime(val) && isPrime(indexOfPrime(val));
+	}
+	
+	public static int indexOfPrime(long val)
+	{
+		int i = 1;
+		long a = 2;
+		
+		for (;;) {
+			if (a == val)
+				return i;
+			
+			if (isPrime(a))
+				++i;
+			
+			++a;
+		}
+	}
+	public static boolean isPrime(long val)
+	{
+		if (val <= 1)
+			return false;
+		
+		if (val % 2 == 0)
+			return val == 2;
+		
+		if (val % 3 == 0)
+			return val == 3;
+		
+		if (val % 5 == 0)
+			return val == 5;
+		
+		for (long i = 7; i * i <= val; i += 2)
+			if (val % i == 0)
+				return false;
+		
+		return true;			
+	}
+}
+
+
