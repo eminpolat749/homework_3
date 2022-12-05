@@ -3,8 +3,8 @@ package csd;
 class App {
 	public static void main(String [] args)
 	{
-		IsPrimeXTest.run();		
-	}	
+		IsPrimeXTest.run();	
+	}
 }
 
 class IsPrimeXTest {
@@ -12,50 +12,28 @@ class IsPrimeXTest {
 	{
 		java.util.Scanner kb = new java.util.Scanner(System.in);
 		
-		for (;;) {
-			System.out.print("Bir sayı giriniz:");
-			int val = kb.nextInt();
-			
-			if (val == 0)
-				break;
-			
-			if (NumberUtil.isPrimeX(val))
-				System.out.println(val);
-			
-		}
+		System.out.print("Bir sayı giriniz:");
+		long n = kb.nextLong();
 		
-		System.out.println("Döngü sonu");
+		for (long i = 0; i <= n; ++i)
+			if (NumberUtil.isPrimeX(i))
+				System.out.println(i);
+		
 	}
 }
 
 class NumberUtil {
-	public static boolean isPrimeX(int val)
+	public static boolean isPrimeX(long val)
 	{
-		if (!isPrime(val))
-			return false;
+		long sum = val;
+		boolean result;
 		
-		while (val > 10) {
-			val = sumDigits(val);
-			if (!isPrime(val))
-				return false;			
-		}
+		while ((result = isPrime(sum)) && sum > 9)
+			sum = sumDigits(sum);		
 		
-		if (!isPrime(val))
-			return false;
-		
-		return true;
+		return result;		
 	}
-	public static int sumDigits(int val)
-	{		
-		int result = 0;
-		
-		while (val > 0) {
-			result += val % 10;
-			val /= 10;			
-		}		
-		
-		return result;
-	}
+	
 	public static boolean isPrime(long val)
 	{
 		if (val <= 1)
@@ -75,5 +53,17 @@ class NumberUtil {
 				return false;
 		
 		return true;			
+	}
+	
+	public static int sumDigits(long val)
+	{
+		int sum = 0;
+		
+		while (val != 0) {
+			sum += val % 10;
+			val /= 10;
+		}
+		
+		return Math.abs(sum);
 	}
 }
