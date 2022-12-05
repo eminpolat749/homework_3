@@ -3,8 +3,8 @@ package csd;
 class App {
 	public static void main(String [] args)
 	{
-		CalculateDigitalRootTest.run();		
-	}	
+		CalculateDigitalRootTest.run();	
+	}
 }
 
 class CalculateDigitalRootTest {
@@ -12,44 +12,33 @@ class CalculateDigitalRootTest {
 	{
 		java.util.Scanner kb = new java.util.Scanner(System.in);
 		
-		for (;;) {
-			System.out.print("Bir sayı giriniz:");
-			int val = kb.nextInt();
-			
-			if (val == 0)
-				break;			
-			
-			System.out.printf("%d sayısının basamaksal kökü: %d%n", val, NumberUtil.calculateDigitalRoot(val));			
-			
-		}
+		System.out.print("Bir sayı giriniz:");
+		int n = kb.nextInt();
 		
-		System.out.println("Döngü sonu");
+		System.out.printf("%d sayısının basamaksal kökü: %d%n", n, NumberUtil.calculateDigitalRoot(n));		
 	}
 }
 
 class NumberUtil {
 	public static int calculateDigitalRoot(int val)
-	{		
-		while ((val = sumDigits(val)) >= 10)
-			;			
-		
-		return val;
-	}
-	public static int sumDigits(int val)
 	{
-		int result = 0;
+		int root = Math.abs(val);
 		
-		while (val > 0) {
-			result += val % 10;
-			val /= 10;			
+		while ((root = sumDigits(root)) > 9)
+			;
+		
+		return root;
+	}
+	
+	public static int sumDigits(long val)
+	{
+		int sum = 0;
+		
+		while (val != 0) {
+			sum += val % 10;
+			val /= 10;
 		}
 		
-		return result;
-	}	
+		return Math.abs(sum);
+	}
 }
-
-
-
-
-
-
